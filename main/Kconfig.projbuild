@@ -1,0 +1,35 @@
+menu "Watch OS Config"
+
+    config BUTTON_A_GPIO
+        int "Button A GPIO (BOOT)"
+        default 0
+
+    config BUTTON_B_GPIO
+        int "Button B GPIO (disabled = -1)"
+        default -1
+
+    config BUTTON_DEBOUNCE_MS
+        int "Button debounce ms"
+        default 50
+
+    config BUTTON_SHORT_PRESS_MS
+        int "Short press threshold ms"
+        default 50
+
+    config BUTTON_LONG_PRESS_MS
+        int "Long press (home) threshold ms"
+        default 1500
+
+    config RECORDER_SAMPLE_RATE
+        int "Recorder sample rate"
+        default 16000
+
+    config RECORDER_BITS_PER_SAMPLE
+        int "Bits per sample"
+        default 16
+
+    config RECORDER_CHANNELS
+        int "Channels"
+        default 1
+
+endmenu
