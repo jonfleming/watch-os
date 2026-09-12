@@ -1,4 +1,5 @@
-# 32 MB flash. Factory is sized for recorder + assistant + menu + headroom.
+# Fits both boards (1.8 = 16 MB, 2.06 = 32 MB). Factory is sized for
+# recorder + assistant + menu + headroom (~8 MB).
 # Name,   Type, SubType, Offset,  Size, Flags
 nvs,      data, nvs,     0x9000,   0x6000,
 phy_init, data, phy,     0xf000,   0x1000,

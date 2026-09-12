@@ -6,6 +6,8 @@ idf_component_register(
         "app_main.c"
         "app_select.c"
         "start_menu.c"
+        "watch_display.c"
+        "battery_indicator.c"
         "${VR_MAIN}/app_main.c"
         "${VR_MAIN}/wav.c"
         "${VR_MAIN}/filesystem_manager.c"

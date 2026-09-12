@@ -1,9 +1,12 @@
 #include "start_menu.h"
 
 #include "app_select.h"
+#include "battery_indicator.h"
 #include "board.h"
+#include "esp_err.h"
 #include "bsp/display.h"
 #include "button_manager.h"
+#include "watch_display.h"
 #include "esp_log.h"
 #include "esp_system.h"
 #include "freertos/FreeRTOS.h"
@@ -88,7 +91,7 @@ void start_menu_run(void)
 
     esp_log_level_t i2c_log = esp_log_level_get("i2c.master");
     esp_log_level_set("i2c.master", ESP_LOG_NONE);
-    lv_display_t *disp = bsp_display_start();
+    lv_display_t *disp = watch_display_start();
     esp_log_level_set("i2c.master", i2c_log);
     if (!disp) {
         ESP_LOGE(TAG, "Display init failed");
@@ -137,6 +140,7 @@ void start_menu_run(void)
     lv_obj_align(footer, LV_ALIGN_BOTTOM_MID, 0, -24);
 
     bsp_display_unlock();
+    battery_indicator_start();
 
     while (1) {
         if (button_a_was_pressed()) {

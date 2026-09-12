@@ -1,0 +1,25 @@
+# Waveshare ESP32-S3 Touch AMOLED 1.8 board-specific sdkconfig overlay.
+# Loaded on top of sdkconfig.defaults when WAVESHARE_AMOLED_1_8_BOARD=ON
+# (see the SDKCONFIG_DEFAULTS wiring in CMakeLists.txt).
+#
+# Delete sdkconfig and fullclean when switching boards: ESP-IDF will not
+# rewrite flash/console keys that already exist in sdkconfig.
+
+# The board's USB-C connects to the ESP32-S3 native USB-Serial-JTAG
+# (GPIO19/20); there is NO USB-UART bridge on this board, so the console
+# must be routed over USB-Serial-JTAG or boot logs are invisible.
+# CONFIG_ESP_CONSOLE_UART_DEFAULT is not set
+CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG=y
+
+# 1.8 ships with 16 MB flash. Unset the 2.06 32 MB QIO choices from
+# sdkconfig.defaults / a previous 2.06 sdkconfig regenerate.
+# CONFIG_ESPTOOLPY_FLASHMODE_QIO is not set
+# CONFIG_ESPTOOLPY_FLASHSIZE_32MB is not set
+CONFIG_ESPTOOLPY_FLASHSIZE_16MB=y
+CONFIG_ESPTOOLPY_FLASHSIZE="16MB"
+
+# The board's touch I2C link is marginal at 400 kHz fast mode (the i2c.master
+# driver logs "Please check pull-up resistances" and the FT3168 probe NACKs
+# intermittently). Drop the BSP's I2C bus to 100 kHz normal mode for a
+# reliable touch probe.
+CONFIG_BSP_I2C_FAST_MODE=n
